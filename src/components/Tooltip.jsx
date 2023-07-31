@@ -1,8 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRootContext } from "../context/rootContext";
 
-export default function Tooltip() {
+export default function Tooltip({ position }) {
   const context = useRootContext();
+  const [positionStyle, setPositionStyle] = useState({
+    tooltip: {},
+    tooltipText: {},
+  });
   const tooltipRef = useRef(null);
   const tooltipTextRef = useRef(null);
   const updateStyle = (elem, name, value) => {
@@ -45,16 +49,53 @@ export default function Tooltip() {
         "--tooltip-padding",
         context.tooltipStyle.padding + "px"
       );
+      updateStyle(
+        tooltipRef.current,
+        "--tooltip-text-size",
+        context.tooltipStyle.textSize + "px"
+      );
     }
   };
+
+  useEffect(() => {
+    switch (position) {
+      case "BOTTOM": {
+        setPositionStyle({
+          tooltip: {
+            top: "100%",
+          },
+        });
+        break;
+      }
+      case "TOP": {
+        setPositionStyle({
+          tooltip: {
+            bottom: "100%",
+            transform: "rotateX(180deg)",
+          },
+          tooltipText: {
+            transform: "rotateX(-180deg)",
+          },
+        });
+        break;
+      }
+    }
+  }, [position]);
 
   useEffect(() => {
     updateTooltipStyles();
   }, [context]);
   return (
-    <div ref={tooltipRef} className="tooltip">
-      <div ref={tooltipTextRef} className="tooltip-text">
-        {context.tooltipStyle.tooltipText}
+    <div ref={tooltipRef} style={positionStyle.tooltip} className="tooltip">
+      <div className="tooltip-arrow"></div>
+      <div className="tooltip-container">
+        <div
+          ref={tooltipTextRef}
+          style={positionStyle.tooltipText}
+          className="tooltip-text"
+        >
+          {context.tooltipStyle.tooltipText}
+        </div>
       </div>
     </div>
   );

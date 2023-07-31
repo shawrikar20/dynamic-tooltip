@@ -5,6 +5,7 @@ export const BUTTONS = [
     position: {
       placeSelf: "start",
     },
+    tooltipPosition: "BOTTOM",
   },
   {
     id: "button-2",
@@ -12,6 +13,7 @@ export const BUTTONS = [
     position: {
       justifySelf: "end",
     },
+    tooltipPosition: "BOTTOM",
   },
   {
     id: "button-3",
@@ -19,6 +21,7 @@ export const BUTTONS = [
     position: {
       placeSelf: "center",
     },
+    tooltipPosition: "BOTTOM",
   },
   {
     id: "button-4",
@@ -26,6 +29,7 @@ export const BUTTONS = [
     position: {
       alignSelf: "end",
     },
+    tooltipPosition: "TOP",
   },
   {
     id: "button-5",
@@ -33,5 +37,6 @@ export const BUTTONS = [
     position: {
       placeSelf: "end",
     },
+    tooltipPosition: "TOP",
   },
 ];

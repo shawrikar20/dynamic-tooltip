@@ -4,7 +4,12 @@ export default function MobileScreen() {
   return (
     <div className="mobile-screen">
       {BUTTONS.map((button, ind) => (
-        <Button id={button.id} text={button.text} position={button.position} />
+        <Button
+          tooltipPosition={button.tooltipPosition}
+          id={button.id}
+          text={button.text}
+          position={button.position}
+        />
       ))}
     </div>
   );

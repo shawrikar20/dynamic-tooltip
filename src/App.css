@@ -13,6 +13,7 @@
   background-color: #868686;
 }
 .parent-button {
+  cursor: pointer;
   display: grid;
   padding: 8px;
   width: fit-content;
@@ -29,7 +30,7 @@
   display: grid;
   gap: 10px;
   margin: 50px;
-  background-color: #868686;
+  background-color: #8686866b;
   padding: 30px;
   height: fit-content;
   align-self: center;
@@ -65,30 +66,34 @@
 
 .tooltip {
   justify-self: center;
+  position: absolute;
+  /* top: calc(100% + 10px); */
+  /* transform: rotateX(180deg); */
+  place-content: center;
+  display: none;
+}
+
+.tooltip-container {
+  display: grid;
+  place-content: center;
   padding: var(--tooltip-padding);
   border-radius: var(--tooltip-border-radius);
   border: 0.419px solid #212121;
   background: var(--tooltip-background);
-  position: absolute;
-  bottom: calc(100% + 10px);
-  transform: rotateX(180deg);
-  place-content: center;
-  display: none;
   width: var(--tooltip-width);
 }
 
 .tooltip-text {
   color: var(--tooltip-color);
-  transform: rotateX(-180deg);
+  font-size: var(--tooltip-text-size);
+  /* transform: rotateX(-180deg); */
 }
 
-.tooltip::after {
-  content: " ";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  margin-top: -10px;
-  margin-left: -5px;
+.tooltip-arrow {
+  width: fit-content;
+  height: fit-content;
+  display: grid;
+  justify-self: center;
   border-width: var(--tooltip-border-width) var(--tooltip-border-height);
   border-style: solid;
   border-color: transparent transparent #212121 transparent;

@@ -14,6 +14,10 @@ export default function Form() {
           <Label text={"Target Element"} />
           <select
             className="form-input"
+            value={context.tooltipStyle.targetElemId}
+            onChange={(e) => {
+              context.setFunctions.setTargetElemId(e.target.value);
+            }}
             name="button-select"
             id="button-select"
           >
