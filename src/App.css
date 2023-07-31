@@ -13,7 +13,6 @@
   background-color: #868686;
 }
 .parent-button {
-  position: absolute;
   display: grid;
   padding: 8px;
   width: fit-content;
@@ -62,4 +61,46 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 6px;
   padding: 0px 12px;
+}
+
+.tooltip {
+  justify-self: center;
+  padding: var(--tooltip-padding);
+  border-radius: var(--tooltip-border-radius);
+  border: 0.419px solid #212121;
+  background: var(--tooltip-background);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  transform: rotateX(180deg);
+  place-content: center;
+  display: none;
+  width: var(--tooltip-width);
+}
+
+.tooltip-text {
+  color: var(--tooltip-color);
+  transform: rotateX(-180deg);
+}
+
+.tooltip::after {
+  content: " ";
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -5px;
+  border-width: var(--tooltip-border-width) var(--tooltip-border-height);
+  border-style: solid;
+  border-color: transparent transparent #212121 transparent;
+}
+
+.button-container {
+  display: grid;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+}
+
+.button-container:hover > .tooltip {
+  display: grid;
 }

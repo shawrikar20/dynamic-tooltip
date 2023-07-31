@@ -1,5 +1,12 @@
-export default function TextInput(){
-    return(
-        <input type="text" className="form-input"/>
-    )
+export default function TextInput({ changeFunc, text }) {
+  return (
+    <input
+      type="text"
+      onChange={(e) => {
+        changeFunc(e.target.value);
+      }}
+      value={text}
+      className="form-input"
+    />
+  );
 }

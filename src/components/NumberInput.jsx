@@ -1,5 +1,12 @@
-export default function NumberInput(){
-    return(
-        <input type="number" className="form-input"/>
-    )
+export default function NumberInput({ changeFunc, num }) {
+  return (
+    <input
+      type="number"
+      onChange={(e) => {
+        changeFunc(e.target.value);
+      }}
+      value={num}
+      className="form-input"
+    />
+  );
 }
