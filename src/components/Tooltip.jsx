@@ -6,6 +6,7 @@ export default function Tooltip({ position }) {
   const [positionStyle, setPositionStyle] = useState({
     tooltip: {},
     tooltipText: {},
+    tooltipArrow: {},
   });
   const tooltipRef = useRef(null);
   const tooltipTextRef = useRef(null);
@@ -22,12 +23,12 @@ export default function Tooltip({ position }) {
       updateStyle(
         tooltipRef.current,
         "--tooltip-width",
-        context.tooltipStyle.tooltipWidth + "px"
+        context.tooltipStyle.tooltipWidth / 16 + "rem"
       );
       updateStyle(
         tooltipRef.current,
         "--tooltip-border-radius",
-        context.tooltipStyle.cornerRadius + "px"
+        context.tooltipStyle.cornerRadius / 16 + "rem"
       );
       updateStyle(
         tooltipTextRef.current,
@@ -37,22 +38,22 @@ export default function Tooltip({ position }) {
       updateStyle(
         tooltipRef.current,
         "--tooltip-border-width",
-        context.tooltipStyle.arrowWidth + "px"
+        context.tooltipStyle.arrowWidth / 16 + "rem"
       );
       updateStyle(
         tooltipRef.current,
         "--tooltip-border-height",
-        context.tooltipStyle.arrowHeight + "px"
+        context.tooltipStyle.arrowHeight / 16 + "rem"
       );
       updateStyle(
         tooltipRef.current,
         "--tooltip-padding",
-        context.tooltipStyle.padding + "px"
+        context.tooltipStyle.padding / 16 + "rem"
       );
       updateStyle(
         tooltipRef.current,
         "--tooltip-text-size",
-        context.tooltipStyle.textSize + "px"
+        context.tooltipStyle.textSize / 16 + "rem"
       );
     }
   };
@@ -79,6 +80,38 @@ export default function Tooltip({ position }) {
         });
         break;
       }
+      case "RIGHT": {
+        setPositionStyle({
+          tooltip: {
+            left: "100%",
+            alignSelf: "center",
+            gridAutoFlow: "column",
+          },
+          tooltipArrow: {
+            alignSelf: "center",
+            transform: "rotateZ(-90deg)",
+          },
+        });
+        break;
+      }
+      case "LEFT": {
+        setPositionStyle({
+          tooltip: {
+            right: "100%",
+            transform: "rotate(180deg)",
+            alignSelf: "center",
+            gridAutoFlow: "column",
+          },
+          tooltipText: {
+            transform: "rotate(180deg)",
+          },
+          tooltipArrow: {
+            alignSelf: "center",
+            transform: "rotateZ(-90deg)",
+          },
+        });
+        break;
+      }
     }
   }, [position]);
 
@@ -87,7 +120,7 @@ export default function Tooltip({ position }) {
   }, [context]);
   return (
     <div ref={tooltipRef} style={positionStyle.tooltip} className="tooltip">
-      <div className="tooltip-arrow"></div>
+      <div style={positionStyle.tooltipArrow} className="tooltip-arrow"></div>
       <div className="tooltip-container">
         <div
           ref={tooltipTextRef}

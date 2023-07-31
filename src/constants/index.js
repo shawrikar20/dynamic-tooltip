@@ -21,7 +21,7 @@ export const BUTTONS = [
     position: {
       placeSelf: "center",
     },
-    tooltipPosition: "BOTTOM",
+    tooltipPosition: "RIGHT",
   },
   {
     id: "button-4",
